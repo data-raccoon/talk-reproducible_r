@@ -1,0 +1,31 @@
+reproducibility
+heterogenous systems
+
+research
+share work with others
+side topic: proper sharing of research
+production
+(security) updates
+
+non-programming background, self-taught
+economics, physics, psychology
+used to ad-hoc / one-time analyses
+build business intelligence system from ground up
+
+challenge rapidly developing packages
+challenge latest features necessary
+
+example collect(n = Inf)
+example group_by + arrange
+example logstash
+
+solution manual validation
+solution don't upgrade
+solution unit testing
+solution checkpoints, compare with python
+solution pre-built images
+
+question: your experience, your solutions?
+
+
+
