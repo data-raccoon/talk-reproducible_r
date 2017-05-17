@@ -5,7 +5,6 @@ We need to work with some code from over a year ago that at the time perfectly r
 Now, a bunch of OS and R updates later, everything falls to pieces.
 Sometimes we get a proper error message and immediatly solve the issue.
 But sometimes changes manifest in a more subtle way.
-Maybe some of the results get spoiled.
-Maybe this goes unnoticed until it's too late...
+Maybe some of the results get spoiled - and what if this goes unnoticed until it's too late...?
 
 In this talk I'll share some of our experiences and explore various ways of how reproducibility can be achieved.
