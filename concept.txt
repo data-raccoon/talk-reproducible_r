@@ -1,31 +1,59 @@
-reproducibility
-heterogenous systems
-
-research
-share work with others
+# reproducibility
+main problem: heterogenous systems
+ * windows, linux, old os version, mix of different already installed packages
+ * switch provider, update os (even production systems for security)
+ * research, share work with others
 side topic: proper sharing of research
-production
-(security) updates
+include
+ * runnable code (this talk)
+ * include raw data
+ * (sources)
+ * (reasoning)
 
-non-programming background, self-taught
+
+# Introduction Stephan Porz
+Data scientist @eyeo, team of 3
 economics, physics, psychology
-used to ad-hoc / one-time analyses
+non-programming background, self-taught
+used to academia, ad-hoc and one-time analyses
 build business intelligence system from ground up
+ * strong privacy concerns in mind
 
-challenge rapidly developing packages
-challenge latest features necessary
+Technologies
+ * unix tools, make, some python, mostly R
+quick scripts, POC
+ * data exploration
+ * ad-hoc analyses
+ * short reports
+frequently run scripts, processes, production
+ * dashboards (shiny)
+ * data preparation
+ * processing
+ * aggregation
+challenges
+ * quickly growing requirements (the more we learn and company grows)
+ * (sometimes) latest features necessary
+ * rapidly developing packages
+ * stability / low maintenance
 
-example collect(n = Inf)
-example group_by + arrange
-example logstash
 
-solution manual validation
-solution don't upgrade
-solution unit testing
-solution checkpoints, compare with python
-solution pre-built images
+# solution approaches
+manual validation
+don't upgrade
+* bites you in the back
+* logstash example
+unit testing
+ * will only get you so far
+ * collect(n = Inf) example
+ * group_by w/ arrange example
+checkpoints, compare with python pip
+image creation rules
+pre-built images
 
-question: your experience, your solutions?
 
+# questions
+your experience?
+you need reproducibility?
+your solutions?
 
 
