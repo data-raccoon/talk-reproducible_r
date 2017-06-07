@@ -1,8 +1,8 @@
 Is R fit to create reproducible results?
 ================================================================================
-author: Stephan Porz, @data_raccoon, Data Scientist at eyeo
+author: Stephan Porz, @data_raccoon, data scientist at eyeo
 font-family: 'Linux Biolinum O'
-date: 2017-06-09, R User Group (Köln) meetup
+date: 2017-06-09, Köln R User Group meetup
 autosize: true
 
 Reproducibility
@@ -20,13 +20,14 @@ Why reproducibility
 * share data products with others
 
 
-Excursion: proper sharing of research (and data products)
+Excursion: proper sharing of research (and applications)
 ================================================================================
 type: sub-section
 * show evidence of result correctness
 * enable others to use methods and results
 
-**Reproducibility in Science** - [http://ropensci.github.io/reproducibility-guide](http://ropensci.github.io/reproducibility-guide)
+**Reproducibility in Science**
+* [http://ropensci.github.io/reproducibility-guide](http://ropensci.github.io/reproducibility-guide)
 * principles for many fields
 * advice for various tasks
 
@@ -47,7 +48,7 @@ Heterogenous systems
 
 Background: eyeo & @data_raccoon
 ================================================================================
-type: sub-section
+type: prompt
 ### Data scientist, team of three
 * economics, physics, psychology
 * non-programming background, self-taught
@@ -58,8 +59,9 @@ type: sub-section
 
 Background: technologies
 ================================================================================
-type: sub-section
-### Quick and dirty / proof of concept
+type: prompt
+### Quick and dirty
+* proof of concept
 * data exploration
 * ad-Hoc analyses
 * short reports
@@ -69,32 +71,33 @@ type: sub-section
 ***
 ### Need for stability
 * data parsing & cleaning
-* applications (shiny-dashboards)
-* frequent tasks / regular reports
+* applications (shiny)
+* frequent tasks
+* regular reports
 
-**make, R, other Unix tools, Python**
+**make, R, Unix tools, Python**
 
 
 Challenges
 ================================================================================
-type: sub-section
+type: prompt
 * quickly changing & growing requirements
   * the more we learn & the company grows
 * latest features allow fast progress
 * rapidly developing packages
-* need stability / low maintenance
+* need stability & low maintenance
 
 
 Solution approaches
 ================================================================================
-manual validation
-don't upgrade
+don't upgrade / change a running system
 * bites you in the back
 * logstash example
+manual validation
 unit testing
- * will only get you so far
- * collect(n = Inf) example
- * group_by w/ arrange example
+* will only get you so far
+* collect(n = Inf) example
+* group_by w/ arrange example
 checkpoints, compare with python pip
 image creation rules
 pre-built images
