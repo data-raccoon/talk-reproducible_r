@@ -1,0 +1,120 @@
+Is R fit to create reproducible results?
+================================================================================
+author: Stephan Porz, @data_raccoon, Data Scientist at eyeo
+font-family: 'Linux Biolinum O'
+date: 2017-06-09, R User Group (Köln) meetup
+autosize: true
+
+Reproducibility
+================================================================================
+```{r, echo=FALSE, include=FALSE}
+# here goes the story from README.md
+```
+
+
+Why reproducibility
+================================================================================
+* re-use old code
+* regularly run a script
+* applications
+* share data products with others
+
+
+Excursion: proper sharing of research (and data products)
+================================================================================
+type: sub-section
+* show evidence of result correctness
+* enable others to use methods and results
+
+**Reproducibility in Science** - [http://ropensci.github.io/reproducibility-guide](http://ropensci.github.io/reproducibility-guide)
+* principles for many fields
+* advice for various tasks
+
+
+Heterogenous systems
+================================================================================
+### Various states
+* OS: Windows, Mac, Linux
+* OS versions: Ubuntu 14.04 LTS, Ubuntu 17.04
+* R versions: R 3.0.2, R 3.3.3
+* R packages: dplyr 0.5.0, tidyr 0.6.1
+
+### Evolving systems
+* update OS, R, R packages
+  * features, security
+* fresh installation
+
+
+Background: eyeo & @data_raccoon
+================================================================================
+type: sub-section
+### Data scientist, team of three
+* economics, physics, psychology
+* non-programming background, self-taught
+* used to academia, ad-hoc and one-time analyses
+
+### Building business intelligence from scratch
+* strong privacy awareness
+
+Background: technologies
+================================================================================
+type: sub-section
+### Quick and dirty / proof of concept
+* data exploration
+* ad-Hoc analyses
+* short reports
+
+**almost exclusively R**
+
+***
+### Need for stability
+* data parsing & cleaning
+* applications (shiny-dashboards)
+* frequent tasks / regular reports
+
+**make, R, other Unix tools, Python**
+
+
+Challenges
+================================================================================
+type: sub-section
+* quickly changing & growing requirements
+  * the more we learn & the company grows
+* latest features allow fast progress
+* rapidly developing packages
+* need stability / low maintenance
+
+
+Solution approaches
+================================================================================
+manual validation
+don't upgrade
+* bites you in the back
+* logstash example
+unit testing
+ * will only get you so far
+ * collect(n = Inf) example
+ * group_by w/ arrange example
+checkpoints, compare with python pip
+image creation rules
+pre-built images
+
+
+References
+================================================================================
+### Presentation
+* [Reproducibility in Science - A Guide to enhancing reproducibility in scientific results and writing](http://ropensci.github.io/reproducibility-guide)
+* This presentation: [https://github.com/data-raccoon/talk-reproducible_r](https://github.com/data-raccoon/talk-reproducible_r)
+* [R User Group (Köln) meetup](https://www.meetup.com/KoelnRUG)
+* Your host: [eyeo](https://eyeo.com), [Adblock Plus](https://adblockplus.org), [Flattr](https://flattr.com)
+
+### Tools
+* [Rpress presentations](https://support.rstudio.com/hc/en-us/articles/200486468-Authoring-R-Presentations)
+* [Linux Libertine font family](http://www.linuxlibertine.org)
+
+
+Your experiences
+================================================================================
+type: prompt
+* Has reproducibility been a topic for you?
+* How did you tackle the issue?
