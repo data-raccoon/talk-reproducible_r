@@ -7,7 +7,7 @@ autosize: true
 
 Reproducibility
 ================================================================================
-```{r, echo=FALSE, include=FALSE}
+```{r, echo=FALSE, include=FALSE, eval=FALSE}
 # here goes the story from README.md
 ```
 
@@ -88,19 +88,29 @@ type: prompt
 * need stability & low maintenance
 
 
-Solution approaches
+The collect() incident
 ================================================================================
-don't upgrade / change a running system
-* bites you in the back
-* logstash example
-manual validation
-unit testing
-* will only get you so far
-* collect(n = Inf) example
-* group_by w/ arrange example
-checkpoints, compare with python pip
-image creation rules
-pre-built images
+```{r, eval=FALSE}
+library(RPostgreSQL)
+library(dplyr)
+con <- src_postgres(db = "mydb")
+data <- con %>% tbl("mytbl") %>% collect()
+data <- con %>% tbl("mytbl") %>% collect(n = 100000)
+data <- con %>% tbl("mytbl") %>% collect(n = Inf)
+```
+
+It's not in the help, but there were warning messages and it's in
+```{r, eval=FALSE}
+dplyr:::collect.tbl_sql
+```
+
+The arrange() incident
+================================================================================
+```{r, eval=FALSE}
+library(dplyr)
+data %>% group_by(col1) %>%  arrange(-col2) %>% ...
+data %>%  arrange(-col2) %>% group_by(col1) %>% ...
+```
 
 
 References
@@ -112,6 +122,7 @@ References
 * Your host: [eyeo](https://eyeo.com), [Adblock Plus](https://adblockplus.org), [Flattr](https://flattr.com)
 
 ### Tools
+* [Using checkpoint for reproducible research](https://cran.r-project.org/web/packages/checkpoint/vignettes/checkpoint.html)
 * [Rpress presentations](https://support.rstudio.com/hc/en-us/articles/200486468-Authoring-R-Presentations)
 * [Linux Libertine font family](http://www.linuxlibertine.org)
 
@@ -121,3 +132,49 @@ Your experiences
 type: prompt
 * Has reproducibility been a topic for you?
 * How did you tackle the issue?
+
+
+
+
+Solution approaches
+================================================================================
+don't upgrade / change a running system
+* bites you in the back
+* logstash example
+manual validation
+unit testing
+* incomplete
+* will only get you so far
+* collect(n = Inf) example
+* group_by w/ arrange example
+checkpoints, compare with python pip
+image creation rules
+pre-built images
+(application built within framework, restrictions)
+
+reduce dependencies
+* don't build a large collection of utility functions and depend on it
+
+external APIs
+
+good logging and monitoring / alarms
+
+version locking
+
+overwrite defaults
+
+fork dependencies into project with certain dependencies
+
+upgrades
+* manually
+* be aware stuff can break at all kinds of points
+
+self-hosted package repository with certain versions
+
+human discipline
+* don't rely on it
+
+```{r, echo=FALSE, include=FALSE}
+library(checkpoint)
+checkpoint("2017-02-20")
+```
