@@ -1,8 +1,8 @@
 Is R fit to create reproducible results?
 ================================================================================
 author: Stephan Porz, @data_raccoon, data scientist at eyeo
-font-family: 'Linux Biolinum O'
 date: 2017-06-09, Köln R User Group meetup
+font-family: 'Linux Biolinum O'
 autosize: true
 
 Reproducibility
@@ -14,7 +14,7 @@ Reproducibility
 
 Why reproducibility
 ================================================================================
-* re-use old code
+* re-use existing code
 * regularly run a script
 * applications
 * share data products with others
@@ -26,13 +26,13 @@ type: sub-section
 * show evidence of result correctness
 * enable others to use methods and results
 
-**Reproducibility in Science**
+**Guide: reproducibility in science**
 * [http://ropensci.github.io/reproducibility-guide](http://ropensci.github.io/reproducibility-guide)
 * principles for many fields
 * advice for various tasks
 
 
-Heterogenous systems
+Main problem: heterogenous systems
 ================================================================================
 ### Various states
 * OS: Windows, Mac, Linux
@@ -49,13 +49,17 @@ Heterogenous systems
 Background: eyeo & @data_raccoon
 ================================================================================
 type: prompt
+
+![](https://eyeo.com/images/people/jessica.png) ![](https://eyeo.com/images/people/pomogajko.png) ![](https://eyeo.com/images/people/porz.png)
+
 ### Data scientist, team of three
-* economics, physics, psychology
-* non-programming background, self-taught
-* used to academia, ad-hoc and one-time analyses
+* psychology, economics, physics
+* academia background, ad hoc and one-time analyses
+* self-taught programming
 
 ### Building business intelligence from scratch
 * strong privacy awareness
+
 
 Background: technologies
 ================================================================================
@@ -78,7 +82,7 @@ type: prompt
 **make, R, Unix tools, Python**
 
 
-Challenges
+Background: Challenges
 ================================================================================
 type: prompt
 * quickly changing & growing requirements
@@ -86,6 +90,17 @@ type: prompt
 * latest features allow fast progress
 * rapidly developing packages
 * need stability & low maintenance
+
+
+The arrange() incident
+================================================================================
+```{r, eval=FALSE}
+library(dplyr)
+data %>% group_by(col1) %>%  arrange(-col2) %>% ...
+data %>%  arrange(-col2) %>% group_by(col1) %>% ...
+```
+
+* different results depending on versions & subsequent commands
 
 
 The collect() incident
@@ -99,30 +114,104 @@ data <- con %>% tbl("mytbl") %>% collect(n = 100000)
 data <- con %>% tbl("mytbl") %>% collect(n = Inf)
 ```
 
-It's not in the help, but there were warning messages and it's in
+* default was changed to 100k
+
+* it's not in the help of collect()
+* there were warning messages and it's in
 ```{r, eval=FALSE}
 dplyr:::collect.tbl_sql
 ```
 
-The arrange() incident
+
+The logstash incident
 ================================================================================
+* system unchanged in months
+* wanted new feature, updated
+* a little used feature wasn't backward compatible
+* re-building needed
+
+
+R update incident
+================================================================================
+* wanted feature of new package
+* incompatible with old R
+* unable to update on old ubuntu
+* new ubuntu introduces more issues
+
+
+Chain of repairs
+================================================================================
+type: alert
+<iframe width="700" height="400" src="http://i.imgur.com/rQIb4Vw.mp4" frameborder="0" allowfullscreen></iframe>
+
+
+Solution approaches
+================================================================================
+### personal
+* set up and never touch again
+* just update & see what fails
+
+### professional
+* version locking
+* reduce dependencies
+* images & containers
+
+
+Version locking
+================================================================================
+* package [checkpoint](https://cran.r-project.org/web/packages/checkpoint/vignettes/checkpoint.html)
 ```{r, eval=FALSE}
-library(dplyr)
-data %>% group_by(col1) %>%  arrange(-col2) %>% ...
-data %>%  arrange(-col2) %>% group_by(col1) %>% ...
+library(checkpoint)
+checkpoint("2017-02-20")
 ```
+* fixed, self-hosted package repository
+
+
+Reduce dependencies
+================================================================================
+* modularization with focus on core functionality
+  * avoid large collections of utility functions
+* fork dependencies at fixed versions into project
+* balance between re-inventing the wheel and dependencies
+  * never write encryption yourself
+
+
+Images & containers
+================================================================================
+* [Vagrant images](https://www.vagrantup.com)
+* [Docker containers](https://www.docker.com)
+  * framework restrictions for application
+* deliver pre-built or creation rules
+
+
+More advice
+================================================================================
+### intentional upgrades
+* actively search for bugs & anomalies (QA)
+  * manual validation
+  * unit testing
+
+***
+### general
+* human discipline, unreliable
+* logging, monitoring, alarms
+  * especially external APIs
+* overwrite defaults
 
 
 References
 ================================================================================
+* [https://github.com/data-raccoon/talk-reproducible_r](https://github.com/data-raccoon/talk-reproducible_r)
+
 ### Presentation
-* [Reproducibility in Science - A Guide to enhancing reproducibility in scientific results and writing](http://ropensci.github.io/reproducibility-guide)
-* This presentation: [https://github.com/data-raccoon/talk-reproducible_r](https://github.com/data-raccoon/talk-reproducible_r)
+* [Guide: reproducibility in science](http://ropensci.github.io/reproducibility-guide)
 * [R User Group (Köln) meetup](https://www.meetup.com/KoelnRUG)
 * Your host: [eyeo](https://eyeo.com), [Adblock Plus](https://adblockplus.org), [Flattr](https://flattr.com)
 
 ### Tools
 * [Using checkpoint for reproducible research](https://cran.r-project.org/web/packages/checkpoint/vignettes/checkpoint.html)
+* [Vagrant images](https://www.vagrantup.com)
+* [Docker containers](https://www.docker.com)
 * [Rpress presentations](https://support.rstudio.com/hc/en-us/articles/200486468-Authoring-R-Presentations)
 * [Linux Libertine font family](http://www.linuxlibertine.org)
 
@@ -133,48 +222,3 @@ type: prompt
 * Has reproducibility been a topic for you?
 * How did you tackle the issue?
 
-
-
-
-Solution approaches
-================================================================================
-don't upgrade / change a running system
-* bites you in the back
-* logstash example
-manual validation
-unit testing
-* incomplete
-* will only get you so far
-* collect(n = Inf) example
-* group_by w/ arrange example
-checkpoints, compare with python pip
-image creation rules
-pre-built images
-(application built within framework, restrictions)
-
-reduce dependencies
-* don't build a large collection of utility functions and depend on it
-
-external APIs
-
-good logging and monitoring / alarms
-
-version locking
-
-overwrite defaults
-
-fork dependencies into project with certain dependencies
-
-upgrades
-* manually
-* be aware stuff can break at all kinds of points
-
-self-hosted package repository with certain versions
-
-human discipline
-* don't rely on it
-
-```{r, echo=FALSE, include=FALSE}
-library(checkpoint)
-checkpoint("2017-02-20")
-```
