@@ -96,8 +96,9 @@ The arrange() incident
 ================================================================================
 ```{r, eval=FALSE}
 library(dplyr)
-data %>% group_by(col1) %>%  arrange(-col2) %>% ...
-data %>%  arrange(-col2) %>% group_by(col1) %>% ...
+
+data %>% group_by(col1) %>%  arrange(col2) %>% ...
+data %>%  arrange(col2) %>% group_by(col1) %>% ...
 ```
 
 * different results depending on versions & subsequent commands
@@ -108,13 +109,12 @@ The collect() incident
 ```{r, eval=FALSE}
 library(RPostgreSQL)
 library(dplyr)
+
 con <- src_postgres(db = "mydb")
 data <- con %>% tbl("mytbl") %>% collect()
-data <- con %>% tbl("mytbl") %>% collect(n = 100000)
-data <- con %>% tbl("mytbl") %>% collect(n = Inf)
+# collect(n = 100000)
+# collect(n = Inf)
 ```
-
-* default was changed to 100k
 
 * it's not in the help of collect()
 * there were warning messages and it's in
@@ -123,7 +123,7 @@ dplyr:::collect.tbl_sql
 ```
 
 
-R update incident
+The R update incident
 ================================================================================
 * wanted feature of new package
 * incompatible with old R
@@ -140,8 +140,8 @@ type: alert
 Solution approaches
 ================================================================================
 ### personal
-* set up and never touch again
 * just update & see what fails
+* set up and never touch again
 
 ### professional
 * version locking
