@@ -123,14 +123,6 @@ dplyr:::collect.tbl_sql
 ```
 
 
-The logstash incident
-================================================================================
-* system unchanged in months
-* wanted new feature, updated
-* a little used feature wasn't backward compatible
-* re-building needed
-
-
 R update incident
 ================================================================================
 * wanted feature of new package
